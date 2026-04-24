@@ -1,0 +1,79 @@
+# Unreal Engine generated folders
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+.vs/
+.vscode/
+.idea/
+
+# Build products
+*.VC.db
+*.opensdf
+*.opendb
+*.sdf
+*.sln
+*.suo
+*.xcodeproj
+*.xcworkspace
+
+# Generated project files
+*.generated.h
+*.generated.cpp
+
+# Visual Studio / Rider
+*.user
+*.userprefs
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.app
+*.exe
+*.out
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Plugin build artifacts
+Plugins/**/Binaries/
+Plugins/**/Intermediate/
+
+# Packaged builds
+Packaged/
+
+# Crash reports
+Saved/Crashes/
+Saved/Logs/

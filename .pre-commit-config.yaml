@@ -1,0 +1,48 @@
+# Patterns excluded from text-oriented hooks (binary Unreal assets and LFS-tracked files).
+exclude: |
+  (?x)^(
+    .*\.(uasset|umap|upk|udk)|
+    .*\.(png|jpg|jpeg|gif|bmp|tga|tif|tiff|psd|exr|hdr|ico)|
+    .*\.(wav|mp3|ogg|flac|aif|aiff|m4a)|
+    .*\.(mp4|mov|avi|mpeg|mpg|webm|mkv)|
+    .*\.(fbx|obj|3ds|blend|dae|stl|ply|abc)|
+    .*\.(ttf|otf|zip|7z|rar|pdf|bin)|
+    Binaries/.*|
+    Build/.*|
+    DerivedDataCache/.*|
+    Intermediate/.*|
+    Saved/.*|
+    .*\.generated\.(h|cpp)
+  )$
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+        # Files larger than this that aren't in LFS will block the commit.
+        args: [--maxkb=1024, --enforce-all]
+
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 3.0.0
+    hooks:
+      - id: git-check   # Catches .gitattributes / LFS misconfiguration.
+
+  - repo: local
+    hooks:
+      - id: clang-format
+        name: clang-format
+        entry: clang-format
+        language: system
+        args: [-i, --style=file]
+        types_or: [c, c++]
+        exclude: .*\.generated\.(h|cpp)$

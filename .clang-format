@@ -1,0 +1,80 @@
+---
+Language: Cpp
+BasedOnStyle: LLVM
+
+# Indentation — Unreal uses hard tabs, width 4.
+UseTab: Always
+TabWidth: 4
+IndentWidth: 4
+ContinuationIndentWidth: 4
+ConstructorInitializerIndentWidth: 4
+AccessModifierOffset: -4
+NamespaceIndentation: None
+IndentCaseLabels: true
+IndentPPDirectives: None
+IndentWrappedFunctionNames: false
+
+# Braces — Allman (brace on its own line), matching the Unreal coding standard.
+BreakBeforeBraces: Allman
+Cpp11BracedListStyle: false
+
+# Lines — Unreal does not enforce a column limit; leave long lines alone.
+ColumnLimit: 0
+ReflowComments: true
+MaxEmptyLinesToKeep: 1
+KeepEmptyLinesAtTheStartOfBlocks: true
+
+# Never collapse things onto a single line.
+AllowShortBlocksOnASingleLine: Never
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortLambdasOnASingleLine: All
+
+# Pointers / references bind to the type: `UObject* Foo`, not `UObject *Foo`.
+PointerAlignment: Right
+DerivePointerAlignment: false
+
+# Spacing.
+SpaceAfterCStyleCast: false
+SpaceAfterTemplateKeyword: true
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeCpp11BracedList: false
+SpaceBeforeCtorInitializerColon: true
+SpaceBeforeInheritanceColon: true
+SpaceBeforeParens: ControlStatements
+SpaceBeforeRangeBasedForLoopColon: true
+SpacesBeforeTrailingComments: 1
+SpacesInAngles: false
+SpacesInCStyleCastParentheses: false
+SpacesInContainerLiterals: true
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+
+# Breaking / alignment.
+AlignAfterOpenBracket: Align
+AlignEscapedNewlines: Left
+AlignOperands: true
+AlignTrailingComments: true
+AllowAllArgumentsOnNextLine: true
+AllowAllParametersOfDeclarationOnNextLine: true
+AlwaysBreakAfterReturnType: None
+AlwaysBreakBeforeMultilineStrings: false
+AlwaysBreakTemplateDeclarations: MultiLine
+BinPackArguments: true
+BinPackParameters: true
+BreakBeforeBinaryOperators: None
+BreakBeforeTernaryOperators: true
+BreakConstructorInitializers: BeforeColon
+BreakInheritanceList: BeforeColon
+BreakStringLiterals: true
+CompactNamespaces: false
+FixNamespaceComments: true
+
+# Don't reorder includes — Unreal headers are order-sensitive (`.generated.h` must stay last).
+SortIncludes: false
+IncludeBlocks: Preserve
+SortUsingDeclarations: true
+
+Standard: Latest
