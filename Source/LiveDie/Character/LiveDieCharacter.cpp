@@ -14,10 +14,12 @@
 
 // Sets default values
 ALiveDieCharacter::ALiveDieCharacter(const FObjectInitializer &ObjectInitializer)
+	// Suppress the USkeletalMeshComponent ACharacter would otherwise create as "Mesh"; we use a UStaticMeshComponent instead.
 	: Super(ObjectInitializer.DoNotCreateDefaultSubobject(ACharacter::MeshComponentName))
 {
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	// Capsule does not yaw with the controller; CharacterMovement orients it to movement direction instead (set below).
 	bUseControllerRotationYaw = false;
 
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("StaticMesh"));
@@ -25,6 +27,7 @@ ALiveDieCharacter::ALiveDieCharacter(const FObjectInitializer &ObjectInitializer
 	Camera = CreateDefaultSubobject<UCameraComponent>(FName("Camera"));
 	HealthComponent = CreateDefaultSubobject<UHealthComponent>(FName("HealthComponent"));
 
+	// Camera boom rotates with the player controller's view rotation (mouse look).
 	SpringArm->bUsePawnControlRotation = true;
 	SpringArm->TargetArmLength = 300.0f;
 
@@ -34,6 +37,7 @@ ALiveDieCharacter::ALiveDieCharacter(const FObjectInitializer &ObjectInitializer
 
 	UCharacterMovementComponent *CharacterMovementComponent = GetCharacterMovement();
 	check(CharacterMovementComponent != nullptr);
+	// Pairs with bUseControllerRotationYaw=false: the capsule rotates to face the velocity direction.
 	CharacterMovementComponent->bOrientRotationToMovement = true;
 }
 
