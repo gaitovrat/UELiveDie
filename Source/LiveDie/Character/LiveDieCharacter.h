@@ -11,6 +11,8 @@
 #include "Components/StaticMeshComponent.h"
 #include "LiveDieCharacter.generated.h"
 
+class UHUDWidget;
+
 UCLASS()
 class LIVEDIE_API ALiveDieCharacter : public ACharacter
 {
@@ -40,6 +42,9 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	TObjectPtr<UInputAction> LookAction;
+
+	UPROPERTY(EditDefaultsOnly, Category = "UI")
+	TSubclassOf<UHUDWidget> HUDWidget;
 
 protected:
 	// Called when the game starts or when spawned

@@ -16,4 +16,7 @@ class LIVEDIE_API ALiveDieGameMode : public AGameModeBase
 
 public:
 	ALiveDieGameMode();
+
+	UFUNCTION(BlueprintCallable)
+	void RestartLevel();
 };

@@ -8,6 +8,9 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
+#include "Blueprint/UserWidget.h"
+#include "../UI/HUDWidget.h"
+#include "LiveDie/Game/LiveDieGameMode.h"
 
 // Sets default values
 ALiveDieCharacter::ALiveDieCharacter(const FObjectInitializer &ObjectInitializer)
@@ -40,6 +43,19 @@ void ALiveDieCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	HealthComponent->OnDeath.AddDynamic(this, &ThisClass::HandleDeath);
+
+	if (!HUDWidget)
+		return;
+	APlayerController *PC = Cast<APlayerController>(GetController());
+	if (!PC || !PC->IsLocalController())
+		return;
+
+	UHUDWidget *Widget = CreateWidget<UHUDWidget>(PC, HUDWidget);
+	if (!Widget)
+		return;
+
+	Widget->AddToViewport();
+	Widget->BindToCharacter(this);
 }
 
 // Called every frame
@@ -98,4 +114,6 @@ void ALiveDieCharacter::Look(const FInputActionValue &Value)
 
 void ALiveDieCharacter::HandleDeath()
 {
+	ALiveDieGameMode *GameMode = Cast<ALiveDieGameMode>(GetWorld()->GetAuthGameMode());
+	GameMode->RestartLevel();
 }

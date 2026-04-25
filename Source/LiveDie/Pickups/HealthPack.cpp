@@ -11,11 +11,12 @@ AHealthPack::AHealthPack()
 	PrimaryActorTick.bCanEverTick = true;
 
 	OverlapSphere = CreateDefaultSubobject<USphereComponent>(FName("OverlapSphere"));
-	OverlapMesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("OverlapMesh"));
-
+	OverlapSphere->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
 	OverlapSphere->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::OnOverlap);
-
 	RootComponent = OverlapSphere;
+
+	OverlapMesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("OverlapMesh"));
+	OverlapMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	OverlapMesh->SetupAttachment(OverlapSphere);
 }
 
